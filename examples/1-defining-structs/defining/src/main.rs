@@ -24,5 +24,6 @@ fn main() {
 
     println!("{:?}", person);
     println!("Full name: {}", person.full_name());
+    println!("Weight: {} kg", person.weight.unwrap_or(0));
 
 }
