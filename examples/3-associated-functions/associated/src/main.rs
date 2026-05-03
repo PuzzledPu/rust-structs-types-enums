@@ -17,16 +17,23 @@ impl User {
     fn deactivate(&mut self) {
         self.active = false;
     }
+    fn from_email(email: String) -> Self {
+        let username = email.split('@').next().unwrap_or("").to_string();
+        Self::new(username, email, String::from(""))
+    }
+    fn update_uri(&mut self, new_uri: String) {
+        self.uri = new_uri;
+    }
 }
 
 fn main() {
-    let mut new_user = User::new(
-        String::from("alfredodeza"),
-        String::from("alfreodeza@example.com"),
-        String::from("https://alfredodeza.com"),
+    let mut new_user = User::from_email(
+        "puzzledpu@gmail.com".to_string()
     );
     println!("Hello, {}!", new_user.username);
     println!("Account {} status is: {}", new_user.username, new_user.active);
     new_user.deactivate();
     println!("Account {} status is: {}", new_user.username, new_user.active);
+    new_user.update_uri("https://puzzledpu.wordpress.com".to_string());
+    println!("Account {} URI is: {}", new_user.username, new_user.uri);
 }
